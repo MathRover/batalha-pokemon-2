@@ -28,7 +28,7 @@ def pegar_movimento(url_move):
         return None
 
 while True:
-    # --- POKÉMON DE ATAQUE ---
+    
     
     nome_ataque = input("\nDigite o nome do Pokémon de ataque (ou 'sair' para encerrar): ")
     if nome_ataque.lower() == "sair":
@@ -47,7 +47,7 @@ while True:
     print("Tipos:", ", ".join(t['name'].title() for t in tipos_atk))
     
 
-    #----TELA DE SUPER AFETIVOS----
+    
 
     super_efetivos = set()
     for tipo in tipos_atk:
@@ -60,7 +60,7 @@ while True:
         print("-", tipo.title())
 
 
-    #----MENU DE HABILIDADES----
+    
 
     movimentos = pokemon_atk['moves']
     if not movimentos:
@@ -89,7 +89,7 @@ while True:
     print("\033[36m=\033[0m" * 30)
 
     
-    #----TANTO DE DANO QUE VAI CAUSAR/ ESPECIFICAÇÕES----
+    
 
     if dados_ataque:
         print("\033[34mDetalhes do ataque:\033[0m")
@@ -101,7 +101,7 @@ while True:
     dano_base = dados_ataque.get('power', 50) if dados_ataque else 50 
 
 
-    # --- POKÉMON DE DEFESA ---
+    
     nome_defesa = input("\nDigite o nome do Pokémon de defesa (ou 'sair' para encerrar): ")
     if nome_defesa.lower() == "sair":
         break
@@ -119,7 +119,6 @@ while True:
     print("Tipos:", ", ".join(t['name'].title() for t in tipos_def))
 
 
-    # --- CÁLCULO DO DANO COM MULTIPLICADOR DE TIPO ---
 
     multiplicador = 1
     for tipo_def in tipos_def:

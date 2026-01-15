@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batalha Pokémon</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <h1>⚡ Batalha Pokémon ⚡</h1>
+
+  <svg class="pokeball" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="45" fill="#fff" stroke="#000" stroke-width="3"/>
+    <line x1="0" y1="50" x2="100" y2="50" stroke="#000" stroke-width="3"/>
+    <circle cx="50" cy="50" r="15" fill="#fff" stroke="#000" stroke-width="2"/>
+    <circle cx="50" cy="50" r="8" fill="#000"/>
+  </svg>
+
+  <!-- Menu Inicial -->
+  <div class="menu" id="menu">
+    <h2>Menu Inicial</h2>
+    <div class="buttons">
+      <button class="play-btn" onclick="showSelection()">▶ Jogar</button>
+      <button class="stats-btn" onclick="showStats()">📊 Estatísticas</button>
+      <button class="darkmode-btn" onclick="toggleDarkMode()">🌙 Modo Escuro</button>
+      <button class="exit-btn" onclick="window.close()">✖ Sair</button>
+    </div>
+  </div>
+
+  <!-- Seleção de Pokémon -->
+  <div class="selection-screen" id="selectionScreen">
+    <h2>Escolha seus Pokémons</h2>
+    <div class="selection-input">
+      <input type="text" id="playerPokemon" placeholder="Digite o nome do seu Pokémon" />
+      <button class="play-btn" onclick="searchPokemon('player')">Buscar</button>
+    </div>
+    <div class="selection-input">
+      <input type="text" id="enemyPokemon" placeholder="Digite o nome do Pokémon adversário" />
+      <button class="play-btn" onclick="searchPokemon('enemy')">Buscar</button>
+    </div>
+    <div class="pokemon-preview" id="pokemonPreview"></div>
+    <div class="buttons" style="margin-top: 30px;">
+      <button class="play-btn" id="startBattleBtn" onclick="startBattle()" disabled>Iniciar Batalha</button>
+      <button class="back-btn" onclick="showMenu()">Voltar</button>
+    </div>
+  </div>
+
+  <!-- Arena de Batalha -->
+  <div class="battle-arena" id="battleArena">
+    <div class="battle-header">
+      <h2>⚔️ Batalha Pokémon ⚔️</h2>
+    </div>
+    <div class="battle-field">
+      <div class="battle-pokemon enemy" id="enemyPokemonCard">
+        <div class="pokemon-info">
+          <span class="pokemon-name-battle" id="enemyName">---</span>
+          <span class="pokemon-level">Lv. 50</span>
+        </div>
+        <div class="hp-bar-container">
+          <div class="hp-bar" id="enemyHpBar" style="width: 100%;">HP: 100/100</div>
+        </div>
+        <div class="pokemon-sprite">
+          <img id="enemySprite" src="" alt="Pokémon" />
+        </div>
+      </div>
+      <div class="battle-pokemon player" id="playerPokemonCard">
+        <div class="pokemon-info">
+          <span class="pokemon-name-battle" id="playerName">---</span>
+          <span class="pokemon-level">Lv. 50</span>
+        </div>
+        <div class="hp-bar-container">
+          <div class="hp-bar" id="playerHpBar" style="width: 100%;">HP: 100/100</div>
+        </div>
+        <div class="pokemon-sprite">
+          <img id="playerSprite" src="" alt="Pokémon" />
+        </div>
+      </div>
+    </div>
+    <div class="attacks-panel">
+      <h3>Seus Ataques</h3>
+      <div class="attacks-grid" id="attacksGrid"></div>
+    </div>
+    <div class="battle-log" id="battleLog"></div>
+    <div class="buttons" style="margin-top: 20px; justify-content: center;">
+      <button class="back-btn" onclick="resetGame(); showMenu()">Voltar ao Menu</button>
+    </div>
+  </div>
+
+  <!-- Tela de Vencedor -->
+  <div class="winner-screen" id="winnerScreen">
+    <h2 id="winnerTitle">Vencedor!</h2>
+    <img id="winnerSprite" src="" alt="Pokémon Vencedor" />
+    <div class="buttons">
+      <button class="play-btn" onclick="resetGame(); showSelection()">Jogar Novamente</button>
+      <button class="back-btn" onclick="showMenu()">Menu Principal</button>
+    </div>
+  </div>
+
+  <!-- Tela de Estatísticas -->
+  <div class="stats-screen" id="statsScreen">
+    <h2>📊 Estatísticas</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Batalhas Totais</h3>
+        <div class="stat-value" id="totalBattles">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Vitórias</h3>
+        <div class="stat-value" id="wins">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Derrotas</h3>
+        <div class="stat-value" id="losses">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Taxa de Vitória</h3>
+        <div class="stat-value" id="winRate">0%</div>
+      </div>
+      <div class="stat-card">
+        <h3>Pokémon Mais Usado</h3>
+        <div class="stat-value" id="mostUsed" style="font-size: 18px;">N/A</div>
+      </div>
+    </div>
+    <div class="battle-history">
+      <h3 style="margin-top: 30px; margin-bottom: 15px;">Histórico Recente</h3>
+      <div id="battleHistoryList"></div>
+    </div>
+    <div class="buttons" style="margin-top: 30px;">
+      <button class="back-btn" onclick="showMenu()">Voltar</button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+

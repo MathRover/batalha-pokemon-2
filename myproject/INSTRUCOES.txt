@@ -1,0 +1,32 @@
+🎮 Batalha Pokémon - Instruções Rápidas
+========================================
+
+✅ AMBIENTE CONFIGURADO COM SUCESSO!
+
+📋 Para executar o jogo:
+
+1. MÉTODO RÁPIDO (Recomendado):
+   - Execute: run.bat
+   - O jogo abrirá automaticamente
+
+2. MÉTODO MANUAL:
+   - Ative o ambiente virtual:
+     venv\Scripts\activate.bat
+   
+   - Execute o servidor:
+     python app.py
+   
+   - Acesse no navegador:
+     http://localhost:5000
+
+🔄 Se precisar recriar o ambiente:
+   - Execute: setup.bat
+
+📦 Dependências instaladas:
+   - Flask 3.1.2
+   - Requests 2.32.5
+   - Werkzeug 3.1.5
+
+🐍 Python: 3.11.9
+
+✨ Tudo pronto para jogar!
